@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Consultations</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Liste des Consultations</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Référence</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Médecin</th>
+            <th>Patient</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="consultation : ${consultations}">
+            <td th:text="${consultation.reference}"></td>
+            <td th:text="${consultation.dateConsultation}"></td>
+            <td th:text="${consultation.description}"></td>
+            <td th:text="${consultation.medecin.nom}"></td>
+            <td th:text="${consultation.patient.nom}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

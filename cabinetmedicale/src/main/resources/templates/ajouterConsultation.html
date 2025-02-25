@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une Consultation</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Ajouter une Consultation</h1>
+    <form th:action="@{/consultation/ajouterConsultation}" th:object="${consultation}" method="post">
+        <label>Date de la consultation :</label>
+        <label>
+            <input type="date" th:field="*{dateConsultation}" required/>
+        </label>
+
+        <label>Description :</label>
+        <label>
+            <textarea th:field="*{description}" required></textarea>
+        </label>
+
+        <label>Choisir un médecin :</label>
+        <label>
+            <select th:field="*{medecin.id}">
+                <option th:each="medecin : ${medecins}" th:value="${medecin.id}" th:text="${medecin.nom}"></option>
+            </select>
+        </label>
+
+        <label>Choisir un patient :</label>
+        <label>
+            <select th:field="*{patient.id}">
+                <option th:each="patient : ${patients}" th:value="${patient.id}" th:text="${patient.nom}"></option>
+            </select>
+        </label>
+
+        <button type="submit">Ajouter</button>
+    </form>
+
+    <p th:if="${param.success}" style="color: green; text-align: center;">Consultation ajouter !</p>
+</div>
+</body>
+</html>

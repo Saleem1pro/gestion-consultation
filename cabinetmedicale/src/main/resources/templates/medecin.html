@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Médecins</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Liste des Médecins</h1>
+    <p th:if="${#lists.isEmpty(medecins)}">Aucun médecin trouvé.</p>
+
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Specialite</th>
+            <th>Email</th>
+        </tr>
+        <tr th:each="medecin : ${medecins}">
+            <td th:text="${medecin.nom}"></td>
+            <td th:text="${medecin.specialite}"></td>
+            <td th:text="${medecin.email}"></td>
+        </tr>
+    </table>
+
+
+</div>
+</body>
+</html>

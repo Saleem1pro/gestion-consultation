@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Voir Consultation</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Rechercher une Consultation</h1>
+
+    <form th:action="@{/consultation/voirConsultation}" method="get">
+        <label>
+            <input type="text" name="reference" placeholder="Entrez la référence" required>
+        </label>
+        <button type="submit">Rechercher</button>
+    </form>
+
+    <div th:if="${consultation}" class="consultation-card">
+        <h2>Consultation Trouvée</h2>
+        <p><strong>Date :</strong> <span th:text="${consultation.dateConsultation}"></span></p>
+        <p><strong>Description :</strong> <span th:text="${consultation.description}"></span></p>
+
+        <p th:if="${consultation.medecin}">
+            <strong>Médecin :</strong> <span th:text="${consultation.medecin.nom}"></span>
+        </p>
+
+        <p th:if="${consultation.patient}">
+            <strong>Patient :</strong> <span th:text="${consultation.patient.nom}"></span>
+        </p>
+    </div>
+
+    <p th:if="${consultation == null}" style="color: red; text-align: center;">
+        Aucune consultation trouvée avec cette référence.
+    </p>
+</div>
+</body>
+</html>
